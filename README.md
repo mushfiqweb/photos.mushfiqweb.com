@@ -17,7 +17,7 @@
 [<img align="left" alt="mushfiqweb | LastFM" width="22px" src="https://raw.githubusercontent.com/mushfiqweb/mushfiqweb/master/icons/lastfm.svg" />][lastfm]
 <br />
 
-## 📕 Latest Blog Posts by me
+## 📕 Latest Blog Posts
 
 <!-- BLOG-POST-LIST:START -->
 - [How to Install Windows 11 on an Unsupported PC](https://www.mushfiqweb.com/how-to-install-windows-11-on-unsupported-devices/)
