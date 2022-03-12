@@ -36,5 +36,5 @@
 [stackoverflow]: https://stackoverflow.com/story/mushfiqweb
 [lastfm]: https://www.last.fm/user/mushfiqweb
 
-
+[![Action to get blogs](https://github.com/mushfiqweb/photos.mushfiqweb.com/actions/workflows/main2.yml/badge.svg)](https://github.com/mushfiqweb/photos.mushfiqweb.com/actions/workflows/main2.yml)
 
