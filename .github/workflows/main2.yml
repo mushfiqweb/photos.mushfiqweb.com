@@ -1,4 +1,4 @@
-name: Blog posts on ReadMe
+name: Action to get blogs
 on:
   schedule:
     # Runs every day at 9am UTC
