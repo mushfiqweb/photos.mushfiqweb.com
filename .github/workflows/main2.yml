@@ -16,7 +16,7 @@ jobs:
       - name: Get RSS Feed
         uses: kohrongying/readme-the-rss@master
         with:
-          feed_url: https://www.mushfiqweb.com/feed/
+          feed_url: https://www.mushfiqweb.com/feed
           count: 10
       - name: Commit file changes
         run: |
