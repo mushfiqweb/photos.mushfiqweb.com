@@ -5,7 +5,7 @@
 
 **This repo is for a showcase app for the photos taken by me!** 
 
-**That Showcase app is hosted on [Firebase](https://firebase.com) at [photos.mushfiqweb.com](https://photos.mushfiqweb.com/).**
+**That Showcase app is hosted on [Firebase](https://firebase.google.com/) at [photos.mushfiqweb.com](https://photos.mushfiqweb.com/).**
 
 ### Connect with me:
 
@@ -17,7 +17,7 @@
 [<img align="left" alt="mushfiqweb | LastFM" width="22px" src="https://raw.githubusercontent.com/mushfiqweb/mushfiqweb/master/icons/lastfm.svg" />][lastfm]
 <br />
 
-## 📕 Latest Blog Posts
+## 📕 Latest Blog Posts by me
 
 <!-- BLOG-POST-LIST:START -->
 - [How to Install Windows 11 on an Unsupported PC](https://www.mushfiqweb.com/how-to-install-windows-11-on-unsupported-devices/)
