@@ -5,7 +5,7 @@
 
 **This repo is for a showcase app for the photos taken by me!** 
 
-**That Showcase app is hosted on [Firebase](firebase.com) at [photos.mushfiqweb.com](https://photos.mushfiqweb.com/).**
+**That Showcase app is hosted on [Firebase](https://firebase.com) at [photos.mushfiqweb.com](https://photos.mushfiqweb.com/).**
 
 ### Connect with me:
 
