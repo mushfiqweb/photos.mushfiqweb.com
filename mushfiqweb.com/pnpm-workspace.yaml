@@ -1,7 +1,0 @@
-packages:
-  - "."
-allowBuilds:
-  contentlayer2: true
-  esbuild: true
-  protobufjs: true
-  sharp: true

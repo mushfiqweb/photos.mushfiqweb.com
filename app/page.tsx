@@ -1,7 +1,7 @@
-import { Container } from '~/components/ui/container'
-import { PhotoGrid } from '~/components/gallery/photo-grid'
-import { ALL_PHOTOS } from '~/data/photos'
-import { ArrowUpRight, Camera } from 'lucide-react'
+import { ArrowUpRight, Camera } from 'lucide-react';
+import { PhotoGrid } from '~/components/gallery/photo-grid';
+import { Container } from '~/components/ui/container';
+import { ALL_PHOTOS } from '~/data/photos';
 
 export default function HomePage() {
   return (
@@ -10,7 +10,8 @@ export default function HomePage() {
       <div className="w-full flex flex-col justify-center items-center text-center py-6 sm:py-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-medium mb-3">
           <Camera size={14} />
-          <span>Visual Journal</span>
+          <span>A Visual Journal</span>
+          <Camera size={14} />
         </div>
 
         <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white max-w-3xl">
