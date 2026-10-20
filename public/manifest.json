@@ -1,0 +1,21 @@
+{
+  "name": "Mushfiqur's Photos",
+  "short_name": "Photos",
+  "description": "Visual Journal & Photography Showcase by Mushfiqur Rahman",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1f1f1f",
+  "theme_color": "#1f1f1f",
+  "icons": [
+    {
+      "src": "/static/favicons/android-chrome-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

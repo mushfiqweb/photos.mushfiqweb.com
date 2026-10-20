@@ -1,0 +1,103 @@
+---
+title: '[Part 1] Deploy and configure your website on Namecheap in the simplest way'
+date: '2020-04-23'
+tags: ['deployment', 'domain', 'hosting', 'dns', 'namecheap']
+summary: 'I’ve always wanted to have my own personal site, but due to lack of time, I only got to work on it recently during my stay-at-home time...'
+images: []
+authors: ['default']
+---
+
+I’ve always wanted to have my own personal site, but due to ~~laziness~~ lack of time, I only got to work on it recently while staying at home during the quarantine.
+
+In this post, I’ll guide you on how to set up and configure a **domain** and **web hosting** that you purchased on Namecheap (assuming you already have your own source code <Twemoji emoji="smiling-face-with-sunglasses" />)
+
+## Why this tutorial?
+
+Even though Namecheap has a [detailed tutorial](https://www.namecheap.com/resource-center/tutorials/building-your-first-website/) on building a website from scratch, swimming <Twemoji emoji="man-swimming" /> through a sea of documentation isn’t that easy.
+
+![Kid swimming](/static/images/swim.gif)
+
+So, I wrote this tutorial to share what I learned and did in **2 days** to ~~remind myself if I forget in the future~~ help you set up your site faster <Twemoji emoji="beaming-face-with-smiling-eyes" />.
+
+## What do you need for a complete site?
+
+At first, I thought I only needed to buy a **domain** and push my code there. But that’s not enough; the 3 basics to run a website are: **domain name**, **hosting**, and **platform**
+
+- **Domain name** <Twemoji emoji="magnifying-glass-tilted-right" />: This is your website address, e.g., _[pondhub.com](http://www.thepondhub.com/)_, _[mushfiqweb.com](https://mushfiqweb.com)_ ... Think of it like your home address, making it easier to find than using an IP address.
+- **Hosting** <Twemoji emoji="house" />: This is where all your website’s data and information are stored.
+  > -- Web hosting, in simple terms, is a remote hard drive connected to your computer via (you guessed it) the Internet.
+
+If the domain is your home address, then hosting is your actual house.
+
+- **Platform** <Twemoji emoji="laptop" />: These are the tools to build your website, with the source code being the main product.
+
+=> You need to buy both **domain** and **hosting** for a complete site.
+
+I decided to buy both on Namecheap ~~due to lack of experience~~ for easy configuration and support from their team <Twemoji emoji="beaming-face-with-smiling-eyes" />
+
+Go to [https://www.namecheap.com/domains/](https://www.namecheap.com/domains/) (make sure to create an account first), search for a domain, click **Add To Cart**. Namecheap will suggest buying **Web Hosting** and **PositiveSSL** (which is for securing your site—more on that [below](#activate-ssl-certificate)).
+
+![namecheap domain search](/static/images/namecheap1.png)
+
+Buying on Namecheap is pretty straightforward. Just provide the required information, pay up <Twemoji emoji="money-with-wings" /><Twemoji emoji="money-with-wings" /><Twemoji emoji="money-with-wings" /> and you’re done.
+
+![namecheap bill](/static/images/bill.png)
+
+## How to connect domain and hosting?
+
+Your house and address are obviously in one place, so why connect them <Twemoji emoji="eyes" />?
+
+The simple reason is that a house address (**Web hosting**) is actually a sequence of numbers (**IP Address**, e.g., **127.0.0.1**). You need to go to that address to access the website.
+
+=> You need to connect the **domain name** to **hosting** so people can get to the right place using an easy-to-remember address.
+
+![name cheap dns](/static/images/dns.jpg)
+
+If you buy both **domain** and **hosting** on **Namecheap**, the configuration is quite easy:
+
+- Go to **Account / Dashboard / Domain List**, click **Manage** on the domain you just bought.
+- Select **Namecheap Web Hosting DNS** in the **Nameservers** section.
+- Click save (the <Twemoji emoji="check-mark-button" /> icon at the end of the line).
+- Done.
+
+Why can we access the website using ~~**domain name**~~ a simpler address <Twemoji emoji="eyes" />?
+
+It’s all thanks to DNS (I won’t dive into this concept).
+
+> DNS (domain name system) is simply **_The Phone Book of the Internet_**. You can dial the number (IP Address) directly to call your crush (hosting), or look them up by name (domain) in your contact list.
+
+## Activate SSL Certificate
+
+If you didn’t buy **PositiveSSL**, you can skip this section.
+
+**SSL** (Secure Sockets Layer) is a security layer for your website, protecting it with **HTTPS** with two main purposes:
+
+- Ensuring that the data going to and from your site is always encrypted.
+- Verifying that the incoming and outgoing data is accurate.
+
+![SSL certificate](/static/images/https.png)
+
+Websites with **SSL Certificate** are marked as **Secured** on browsers, ensuring user trust.
+
+The simplest way to activate this is through **cPanel** on **Namecheap**:
+
+![Go to cPanel](/static/images/cpanel.png)
+
+- Go to **Account / Dashboard / Domain List**, select the **Products** tab.
+- Click **Go to cPanel**, log in with your **Namecheap** account.
+- In **cPanel**, open **Namecheap SSL**.
+- Click **Activate** PositiveSSL.
+
+Wait for about 5-10 minutes, then click **sync** to see if it’s been successfully activated (if not, wait a bit more and **sync** again until the status changes to **active**).
+
+![Go to cPanel](/static/images/cpanel3.png)
+
+## Wrap Up
+
+By now, you’ve completed 90% of your website setup <Twemoji emoji="astonished-face" />, in the [next part](/blog/deploy-and-config-website-on-namecheap-part-2), I’ll guide you through the remaining ~~90%~~ 10% <Twemoji emoji="smiling-face-with-tear" />, including:
+
+- Understanding the folder structure on the server (**web hosting**).
+- Using [FileZilla](https://filezilla-project.org/) to push code to the server.
+- Setting up 2FA (**Two-Factor Authentication**) to enhance security.
+
+Thanks a lot for reading <Twemoji emoji="folded-hands" />, leave your thoughts in the comments below. Thank you so much!

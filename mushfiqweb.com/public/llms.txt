@@ -1,0 +1,34 @@
+# Mushfiqur Rahman Shishir
+
+> While playing the role of CTO at AGT Software Partners, I have been actively involved in full-stack development, bringing over 15 years of experience in delivering impactful solutions across diverse industries.
+
+## Executive Profile & Leadership Roles
+
+- **CTO (Chief Technology Officer)** at [AGT Software Partners](https://allgentech.io/)
+  - Leading technology strategy, software architecture, and full-stack engineering delivery across enterprise and client solutions.
+- **Co-Founder** at [KMS Marketplace](https://kmstech.co)
+  - Co-founding and driving product architecture, digital commerce platforms, and scalable marketplace solutions.
+- **Co-Founder** at [KMS Tech](https://kmstech.co)
+  - Co-founding modern tech ventures, enterprise engineering consultancy, and digital transformation initiatives.
+
+## Core Expertise & Background
+
+- **Experience**: Over 15 years of professional full-stack software development and technical leadership.
+- **Specializations**: Full-Stack Web Development, eCommerce Systems, Distributed Architectures, Engineering Leadership, Performance Optimization, Cloud Infrastructure.
+- **Primary Tech Stack**: TypeScript, JavaScript, React, Next.js, Remix, Node.js, Tailwind CSS, GraphQL, REST APIs, Microservices, Vercel, AWS.
+
+## Official Profiles & Links
+
+- **Personal Website / Blog**: https://www.mushfiqweb.com
+- **LinkedIn**: https://www.linkedin.com/in/mushfiqweb
+- **GitHub**: https://github.com/mushfiqweb
+- **Twitter / X**: https://twitter.com/mushfiqweb
+- **AGT Software Partners**: https://allgentech.io/
+- **KMS Tech & KMS Marketplace**: https://kmstech.co
+
+## Key Site Pages
+
+- [About Mushfiqur](https://www.mushfiqweb.com/about): Complete biography, career journey, leadership roles, and technical philosophy.
+- [Blog Posts](https://www.mushfiqweb.com/blog): In-depth articles covering React, Next.js, Node.js, AI agents, architecture, and web engineering.
+- [Code Snippets](https://www.mushfiqweb.com/snippets): Practical, reusable code snippets for developers.
+- [Projects](https://www.mushfiqweb.com/projects): Featured engineering projects and open-source contributions.

@@ -1,0 +1,80 @@
+---
+title: 'How Does The Internet Work?'
+date: '2025-11-16'
+tags: ['networking', 'internet', 'http', 'dns', 'ssl', 'tcp/ip', 'basics']
+summary: 'A developer-friendly primer on networks, packets, IP/TCP, DNS, HTTP/HTTPS, SSL/TLS, and routing—how data moves reliably and securely.'
+images: []
+authors: ['default']
+---
+
+The internet is a global network of networks that connects billions of computers and devices. It enables browsing, email, streaming, and real‑time communication by coordinating layers of technologies that move data reliably and securely.
+
+## Overview
+
+- Network of networks interconnected by routers and ISPs
+- Data travels as small packets that may take different paths
+- Protocols define addressing, transport, security, and application behavior
+- DNS resolves human‑readable domains to IP addresses
+- The Web runs on HTTP; security is provided by TLS (HTTPS)
+- Performance is shaped by latency, bandwidth, and congestion
+
+## Packets, Routing, and Reliability
+
+- Applications break messages into packets; each packet carries source/destination IPs.
+- Routers forward packets using routing tables; paths can change due to congestion or failures.
+- Time To Live (TTL) prevents packets from circulating forever.
+- Reliability is handled above IP: TCP reorders, detects loss, and retransmits; UDP trades reliability for lower latency.
+- On the public internet, inter‑domain routing uses BGP so networks can choose economical and resilient paths.
+
+## IP Addresses and DNS
+
+- IPv4 (e.g., `192.0.2.172`) and IPv6 (e.g., `2001:db8::1`) identify devices; subnets and NAT organize local networks.
+- DNS flow: your resolver queries root → TLD → authoritative nameserver to get records.
+- Caching honors TTL to reduce latency and load.
+- Common records: `A/AAAA` map names to IPs, `CNAME` aliases names, `MX` routes mail, `TXT` carries metadata (e.g., SPF/verification).
+
+## Transport: TCP, UDP, and QUIC
+
+- TCP adds reliability via the three‑way handshake (SYN/SYN‑ACK/ACK), acknowledgments, sliding windows, and congestion control (e.g., slow start).
+- UDP is connectionless and used where minimal latency matters (streaming, real‑time).
+- QUIC (over UDP) provides transport‑level encryption and multiplexing; HTTP/3 uses QUIC to reduce head‑of‑line blocking.
+
+## HTTP and the Web
+
+- HTTP defines methods (`GET`, `POST`, etc.), status codes, headers, and bodies.
+- HTTP/1.1 uses persistent connections; HTTP/2 multiplexes streams over one connection; HTTP/3 runs over QUIC.
+- Typical page load:
+  - Resolve domain via DNS
+  - Connect/handshake (TCP or QUIC)
+  - Negotiate TLS for HTTPS
+  - Send request (method, path, headers)
+  - Receive response (status, headers, body)
+- Caching uses headers like `Cache-Control`, `ETag`, and `Last-Modified` to avoid redundant transfers.
+
+## HTTPS and TLS
+
+- HTTPS = HTTP over TLS for confidentiality, integrity, and server authentication.
+- Certificates chain from a leaf to intermediates to a trusted root CA; browsers verify the chain and hostname (via SNI).
+- Ephemeral key exchange enables perfect forward secrecy; OCSP/CRL check revocation; HSTS enforces HTTPS.
+
+## Physical Infrastructure
+
+- Bits travel over fiber, copper, and radio (Wi‑Fi/cellular); last‑mile connects homes/offices to ISP access networks.
+- Backbones and Internet Exchange Points (IXPs) interconnect ISPs; peering reduces cost and improves performance.
+- CDNs place content close to users to cut round‑trip times and offload origins.
+
+## What Developers Should Optimize
+
+- Timeouts, retries with exponential backoff, and idempotent operations.
+- Connection reuse, HTTP/2 or HTTP/3, and gzip/brotli compression.
+- Effective caching: far‑future caches for static assets, validators for dynamic.
+- DNS records and TTLs aligned with deploy strategy; use CNAMEs and health checks.
+- Observability: logs, metrics, tracing; measure latency, errors, and throughput.
+- Security hygiene: HTTPS everywhere, strong ciphers, certificate automation.
+
+## Learn More
+
+- Introduction: `https://roadmap.sh/guides/what-is-internet`
+- Developer guide: `https://cs.fyi/guide/how-does-internet-work`
+- MDN overview: `https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work`
+- Short video: `https://www.youtube.com/watch?v=7_LPdttKXPc`

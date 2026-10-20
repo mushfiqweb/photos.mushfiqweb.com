@@ -1,0 +1,143 @@
+---
+title: 'Quick macOS Setup for Web Devs'
+date: '2025-01-01'
+tags: ['dev-setup', 'macos', 'fresh-install', 'minimal-list']
+summary: 'Get your macOS ready for web development fast! This minimal setup guide will have you coding within 30 minutes.'
+images: []
+authors: ['default']
+---
+
+New Mac? Let's get coding quickly! This guide provides the essential setup for web development on a fresh macOS install. You'll be coding in about 30 minutes <Twemoji emoji="love-you-gesture" />.
+
+## Quick System Tweaks
+
+1.  **Mouse:**
+    - Increase tracking speed.
+    - Enable "Natural scrolling."
+    - Right-click on the right side.
+    - Enable Smart zoom.
+2.  **Keyboard:**
+    - Set key repeat to "fast" and delay to "short".
+3.  **Appearance:**
+    - Consider Light Mode.
+    - Enable Night Shift (Sunset to Sunrise) for eye protection.
+
+<img src="/static/images/my-working-space.png" alt="My working space" />
+
+## Essential Apps & Tools
+
+1.  **Web Browser:** Install [Google Chrome](https://www.google.com/chrome/) (or your preferred browser).
+
+2.  **iTerm2:** Download and install [iTerm2](https://iterm2.com/) (a better terminal). Use your favorite theme, like `Solarized Light`.
+
+3.  **Homebrew:** Install [Homebrew](https://brew.sh/), a macOS package manager:
+
+    ```bash
+    xcode-select --install
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew doctor # verify installation
+    ```
+
+4.  **Git:** Install and configure Git:
+
+    ```bash
+    brew install git
+    which git # verify installation
+    git config --global user.name "your-github-username"
+    git config --global user.email "your@email.com"
+    ```
+
+5.  **Visual Studio Code:** Install [VS Code](https://code.visualstudio.com/) (or your preferred IDE). Consider these extensions:
+
+    - [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+    - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+    - [DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)
+    - [Git Blame](https://marketplace.visualstudio.com/items?itemName=waderyan.gitblame)
+    - [Supermaven](https://marketplace.visualstudio.com/items?itemName=supermaven.supermaven)
+    - [Turbo Console Log](https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log)
+    - [TailwindCSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+
+    <img src="/static/images/vs-code-preview.png" alt="My VS Code preview" />
+
+6.  **Python:** Install Python using Pyenv:
+
+    ```bash
+    brew install pyenv
+    # Follow terminal instructions, and add `eval "$(pyenv init -)"` to .bash_profile
+    source ~/.bash_profile
+    pyenv install --list # List available versions
+    pyenv install 3.12.x # Install the latest (example)
+    ```
+
+7.  **Node.js:** Install Node.js with NVM:
+
+    ```bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+    command -v nvm # Verify installation
+    nvm install node # Install latest
+    nvm use node # Use latest
+    ```
+
+    Install `pnpm` for fast package management:
+
+    ```bash
+    npm install -g pnpm
+    ```
+
+8.  **Ruby:** Install Ruby using rbenv:
+
+    ```bash
+    brew install rbenv
+    # add `eval "$(rbenv init -)"` to .bash_profile
+    source ~/.bash_profile
+     rbenv install --list
+     rbenv install 3.x.x # Replace 3.x.x with the latest
+    ```
+
+9.  **Databases:**
+
+    - **PostgreSQL:**
+
+      ```bash
+      brew install postgresql
+      brew services start postgresql
+      ```
+
+      ```bash
+      # Create a new user
+      sudo -u postgres createuser -s <username>
+
+      #  Create a database
+      sudo -u postgres createdb <database-name> -O <username>
+
+      # Connect to the database to verify if it works
+      psql -d <database-name> -U <username>
+      ```
+
+    - **Redis:**
+      ```bash
+      brew install redis
+      brew services start redis
+       redis-cli ping # Test the connection to the server
+      ```
+
+10. **Applications:**
+
+    - [Cloudflare WARP](https://one.one.one.one/) (faster, secure internet)
+    - [Postman](https://www.postman.com/) (API testing)
+    - [Slack](https://slack.com/) (team messaging)
+    - [Monosnap](https://monosnap.com/) (screenshot tool)
+    - [Spotify](https://www.spotify.com/) (music)
+    - [EVKey](https://evkeyvn.com/) (Vietnamese typing, if applicable)
+
+    <img src="/static/images/mac-apps.png" alt="My applications" />
+
+## Optional Tools:
+
+- Docker
+- Git GUI (Sourcetree, etc)
+- direnv
+
+That's it – the essentials for quick web development setup on macOS!
+
+Let me know if you have questions <Twemoji emoji="clinking-beer-mugs" />.

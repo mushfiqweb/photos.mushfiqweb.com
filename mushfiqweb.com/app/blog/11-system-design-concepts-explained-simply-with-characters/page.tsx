@@ -1,0 +1,343 @@
+import { PostLayout } from '~/layouts/post-layout'
+import { Twemoji } from '~/components/ui/twemoji'
+import { Image } from '~/components/ui/image'
+import { Link } from '~/components/ui/link'
+import { Pre } from '~/components/mdx/pre'
+import { CodeTitle } from '~/components/mdx/code-title'
+import { TableWrapper } from '~/components/mdx/table-wrapper'
+import { Callout } from '~/components/mdx/callout'
+import { CodeBlock } from '~/components/mdx/code-block'
+import { allBlogs } from '~/data/blog-registry'
+import { allAuthors } from '~/data/author-registry'
+import { genPostMetadata } from '~/utils/metadata'
+import type { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const post = allBlogs.find(
+    (p) => p.slug === '11-system-design-concepts-explained-simply-with-characters'
+  )!
+  return genPostMetadata(post)
+}
+
+export default function Page() {
+  const post = allBlogs.find(
+    (p) => p.slug === '11-system-design-concepts-explained-simply-with-characters'
+  )!
+
+  const authorList = post.authors || ['default']
+  const authorDetails = authorList.map((authorSlug) => {
+    return allAuthors.find((p) => p.slug === authorSlug)!
+  })
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    datePublished: post.date,
+    dateModified: post.lastmod || post.date,
+    description: post.summary,
+    image: post.images ? post.images[0] : '/static/images/logo.jpg',
+    url: `https://www.mushfiqweb.com/blog/${post.slug}`,
+    author: authorDetails.map((author) => ({
+      '@type': 'Person',
+      name: author.name,
+    })),
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <PostLayout content={post} authorDetails={authorDetails}>
+        <p>11 System Design Concepts Explained, Simply (With Characters)</p>
+
+        <p>
+          Whether you are preparing for a system design interview or architecting a new application
+          from scratch, understanding how systems scale and operate under heavy load is crucial. The
+          world of distributed systems can seem daunting, but it becomes much more approachable once
+          you break it down into core building blocks.
+        </p>
+
+        <p>To help visualize these concepts, let's introduce a cast of characters:</p>
+
+        <p>Alice: Our eager user/customer.</p>
+
+        <p>Bob: The hard-working server.</p>
+
+        <p>Charlie: The traffic manager.</p>
+
+        <p>Dave: The diligent data archivist.</p>
+
+        <p>Eve: The lightning-fast assistant.</p>
+
+        <p>
+          Here are 11 fundamental system design concepts, explained in detail and illustrated with
+          our characters.
+        </p>
+
+        <ol>
+          <li>Load Balancing</li>
+        </ol>
+
+        <p>
+          The Concept: A load balancer distributes incoming network traffic across a group of
+          backend servers. This ensures no single server bears too much demand, improving overall
+          application responsiveness and availability. Load balancers can operate at different
+          levels, such as Layer 4 (routing based on IP and port) or Layer 7 (routing based on HTTP
+          headers or URL paths). Common algorithms include Round Robin (taking turns) or Least
+          Connections (sending traffic to the least busy server).
+        </p>
+
+        <p>
+          The Illustration: Alice walks into a massive, bustling restaurant. There are ten waiters
+          (the Bobs), but a few of them are completely swamped while others are standing around.
+          Instead of letting Alice guess who to ask, Charlie (the Load Balancer) stands at the front
+          door. Charlie looks at his clipboard, sees that Bob #4 has no tables, and directs Alice
+          right to him. This keeps the restaurant running smoothly and ensures Alice gets served
+          quickly.
+        </p>
+
+        <ol>
+          <li>Caching</li>
+        </ol>
+
+        <p>
+          The Concept: Caching involves temporarily storing copies of frequently accessed data in a
+          high-speed data storage layer (like RAM using Redis or Memcached). This is much faster
+          than querying a traditional disk-based database. Modern caching strategies include
+          Cache-Aside (application checks cache first, then database), Write-Through (data is
+          written to cache and DB simultaneously), and Eviction Policies like LRU (Least Recently
+          Used) to manage limited cache space.
+        </p>
+
+        <p>
+          The Illustration: Alice asks for her account history. Normally, Dave (the Database) has to
+          go down to the basement, dig through thousands of filing cabinets, and carry the heavy
+          file upstairs. This takes 5 minutes. Realizing Alice asks for this every day, Eve (the
+          Cache) makes a photocopy of the file and keeps it right on her desk at the front. The next
+          time Alice asks, Eve hands it to her instantly. If Alice updates her account, Eve throws
+          away the old photocopy and makes a new one.
+        </p>
+
+        <ol>
+          <li>Content Delivery Networks (CDNs)</li>
+        </ol>
+
+        <p>
+          The Concept: A CDN is a geographically distributed network of proxy servers and their data
+          centers. The goal is to provide high availability and performance by distributing the
+          service spatially relative to end-users. CDNs cache static assets like HTML pages,
+          javascript files, stylesheets, images, and videos on "edge servers" located close to the
+          user, drastically reducing latency.
+        </p>
+
+        <p>
+          The Illustration: Alice lives in Tokyo, but Bob's famous cookie bakery is in New York.
+          Whenever Alice orders a cookie, it takes weeks to ship across the ocean (high latency). To
+          solve this, Bob hires a delivery network (the CDN). They set up a small kiosk in Tokyo and
+          stock it with Bob's most popular cookies. Now, when Alice wants a cookie, she gets it
+          instantly from the Tokyo kiosk instead of waiting for a shipment from New York.
+        </p>
+
+        <ol>
+          <li>Database Sharding</li>
+        </ol>
+
+        <p>
+          The Concept: Sharding is a method of horizontal partitioning that splits a single, massive
+          database into smaller, faster, more easily managed parts called data shards. Each shard is
+          held on a separate database server instance. To route queries, engineers use a "shard key"
+          (like a User ID) to mathematically determine which server holds that specific user's data.
+        </p>
+
+        <p>
+          The Illustration: Dave the archivist used to keep every single customer record in one
+          gigantic, 500-pound notebook. It became too heavy for him to lift. To solve this
+          (Sharding), he rips the notebook apart and puts customers with last names A-M in a blue
+          binder on Desk 1, and N-Z in a red binder on Desk 2. When Alice (last name: Adams) asks
+          for her data, Dave doesn't search the whole room; he goes straight to the blue binder on
+          Desk 1.
+        </p>
+
+        <ol>
+          <li>Replication</li>
+        </ol>
+
+        <p>
+          The Concept: Hardware fails, and data centers lose power. Replication is the process of
+          storing identical copies of your data on multiple machines. In a typical Primary-Replica
+          (Master-Slave) setup, the Primary handles all write operations, and the Replicas handle
+          read operations while continuously syncing with the Primary. If the Primary crashes, a
+          Replica can be promoted to take its place, ensuring High Availability.
+        </p>
+
+        <p>
+          The Illustration: Dave is taking down very important financial records. If he accidentally
+          drops his notepad in a puddle, the data is gone forever. To prevent this, Dave has a twin
+          brother, Dave-2 (the Replica), standing right behind him. Every time Dave writes a word,
+          Dave-2 copies it onto his own notepad. If Dave gets sick and has to go home, Dave-2 simply
+          steps forward and takes over his job without missing a beat.
+        </p>
+
+        <ol>
+          <li>Microservices Architecture</li>
+        </ol>
+
+        <p>
+          The Concept: Instead of building a single, monolithic application where the UI, business
+          logic, and data access layers are all tightly coupled, a microservices architecture breaks
+          the application into a collection of loosely coupled, independently deployable services.
+          Each service typically has its own database and communicates over lightweight protocols
+          like HTTP/REST or gRPC.
+        </p>
+
+        <p>
+          The Illustration: In the past, Bob the Monolith ran a one-man shop: he cooked the food,
+          cleaned the floors, took the money, and answered the phones. When things got busy,
+          everything broke down. In a Microservices setup, Bob only cooks. He hires Alice to
+          exclusively take payments, Charlie to exclusively clean, and Eve to exclusively answer
+          phones. They all do their own specialized jobs independently and just talk to each other
+          when necessary.
+        </p>
+
+        <ol>
+          <li>Message Queues (Asynchronous Processing)</li>
+        </ol>
+
+        <p>
+          The Concept: In synchronous communication, the client waits for the server to finish
+          processing before moving on. For long-running tasks (like video processing or sending bulk
+          emails), this causes timeouts and bad UX. Message queues (like RabbitMQ, Kafka, or AWS
+          SQS) allow applications to communicate asynchronously. A "producer" drops a message in the
+          queue and immediately returns a success response to the user, while a "consumer" picks up
+          the message in the background and processes it at its own pace.
+        </p>
+
+        <p>
+          The Illustration: Alice wants a custom oil painting. If this were synchronous, she would
+          have to stand motionless at Bob's easel for 6 hours while he paints it. Instead, she
+          writes her request on a ticket and drops it in a basket (the Message Queue). Bob tells
+          her, "Got it! Go home and relax." Bob pulls tickets from the basket whenever he is free,
+          paints the portraits, and mails them to the customers later.
+        </p>
+
+        <ol>
+          <li>Rate Limiting</li>
+        </ol>
+
+        <p>
+          The Concept: APIs are vulnerable to abuse, whether malicious (DDoS attacks, credential
+          stuffing) or accidental (a developer writing an infinite loop). Rate limiting restricts
+          the number of requests a client (identified by IP, API key, or user token) can make in a
+          given time window. Common algorithms include Token Bucket, Leaky Bucket, and Fixed Window
+          Counters.
+        </p>
+
+        <p>
+          The Illustration: Alice loves free samples at the bakery and decides she wants to take all
+          500 of them, leaving none for anyone else. Charlie (the Rate Limiter bouncer) steps in. He
+          enforces a strict rule: "You get 2 cookies per minute, Alice." If Alice tries to grab a
+          third cookie within 60 seconds, Charlie blocks her hand and says, "Please try again
+          later." (HTTP Status 429: Too Many Requests).
+        </p>
+
+        <ol>
+          <li>API Gateways</li>
+        </ol>
+
+        <p>
+          The Concept: In a microservices ecosystem, you might have dozens of backend services.
+          Exposing all of them directly to the client creates a nightmare for security, routing, and
+          network chatter. An API Gateway sits between the client and the backend services. It acts
+          as a reverse proxy, handling request routing, composition, rate limiting, authentication,
+          and SSL termination.
+        </p>
+
+        <p>
+          The Illustration: Alice walks into a giant department store looking for shoes, a blender,
+          and a book. Instead of forcing Alice to navigate the massive maze to find three different
+          specialized clerks, Charlie (the API Gateway concierge) meets her at the front door. Alice
+          gives Charlie her shopping list. Charlie runs through the store, gathers the items from
+          the various departments, and hands Alice one convenient shopping bag.
+        </p>
+
+        <ol>
+          <li>The CAP Theorem</li>
+        </ol>
+
+        <p>
+          The Concept: Formulated by Eric Brewer, the CAP theorem states that a distributed data
+          store can only guarantee two of the following three traits simultaneously:
+        </p>
+
+        <p>Consistency: Every read receives the most recent write or an error.</p>
+
+        <p>
+          Availability: Every request receives a (non-error) response, without the guarantee that it
+          contains the most recent write.
+        </p>
+
+        <p>
+          Partition Tolerance: The system continues to operate despite an arbitrary number of
+          messages being dropped (or delayed) by the network between nodes. Since network partitions
+          (P) are a reality of the physical world, distributed systems must choose between
+          Consistency (CP) and Availability (AP) during a network failure.
+        </p>
+
+        <p>
+          The Illustration: Dave and Dave-2 work in different buildings, keeping identical ledgers.
+          They usually call each other on the phone to stay synced. Suddenly, the phone line breaks
+          (a Partition). Alice walks into Dave's building and asks, "What's my balance?" Dave has to
+          make a hard choice:
+        </p>
+
+        <p>
+          He can refuse to answer until the phones work again, ensuring he never gives wrong info
+          (Consistency over Availability).
+        </p>
+
+        <p>
+          He can give Alice the last number he remembers, prioritizing giving her an answer, even if
+          Dave-2 just updated it across town (Availability over Consistency).
+        </p>
+
+        <ol>
+          <li>Event-Driven Architecture</li>
+        </ol>
+
+        <p>
+          The Concept: Traditional architectures rely on direct, command-based communication
+          (Service A tells Service B to do something). Event-driven architecture uses a
+          publish/subscribe model. Services publish "events" (state changes, like "User Created") to
+          an event bus. Other services subscribe to those events and react independently. This
+          creates a highly decoupled system where producers don't need to know who is consuming
+          their data.
+        </p>
+
+        <p>
+          The Illustration: When Bob finishes cooking a burger, he doesn't walk over to the cashier
+          to tell her to ring it up, then walk to the waiter to tell him to serve it, then walk to
+          the cleaner to tell him a pan is dirty. Instead, Bob simply rings a bell loudly (Event:
+          "Order Up!").
+        </p>
+
+        <p>The waiter hears the bell and grabs the plate.</p>
+
+        <p>The cashier hears the bell and charges the card.</p>
+
+        <p>
+          The cleaner hears the bell and prepares the sink. Nobody told them to do it; they just
+          reacted to the event.
+        </p>
+
+        <p>
+          Call to Action: What is the hardest system design challenge you've faced recently? Which
+          of these concepts do you use the most in your day-to-day job? Let me know in the comments
+          below!
+        </p>
+      </PostLayout>
+    </>
+  )
+}
