@@ -1,0 +1,23 @@
+export const SITE_METADATA = {
+  title: `Photos by Mushfiqur Rahman | Photography Showcase`,
+  author: 'Mushfiqur Rahman Shishir',
+  headerTitle: `MUSHFIQUR'S PHOTOS`,
+  description: `Showcase of moments, street scenes, architecture, and live performances captured through the lens of Mushfiqur Rahman.`,
+  language: 'en-us',
+  theme: 'dark', // system, dark or light
+  siteUrl: 'https://photos.mushfiqweb.com',
+  blogUrl: 'https://www.mushfiqweb.com',
+  siteRepo: 'https://github.com/mushfiqweb/photos.mushfiqweb.com',
+  siteLogo: '/static/images/logo.jpg',
+  socialBanner: '/og-image.png',
+  email: 'mushfiqweb@gmail.com',
+  github: 'https://github.com/mushfiqweb',
+  x: 'https://x.com/mushfiqweb',
+  facebook: 'https://www.facebook.com/mushfiqweb',
+  youtube: 'https://www.youtube.com/mushfiqwebTV',
+  linkedin: 'https://www.linkedin.com/in/mushfiqweb',
+  instagram: 'https://www.instagram.com/mushfiqweb',
+  lastfm: 'https://www.last.fm/user/mushfiqweb',
+  locale: 'en-US',
+  stickyNav: true,
+}

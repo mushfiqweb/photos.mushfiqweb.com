@@ -1,0 +1,152 @@
+---
+title: "Stop Using Claude Code for Everything (Here's What It Actually Excels At)"
+date: '2026-06-26'
+authors: ['default']
+tags: []
+draft: false
+summary: ''
+---
+
+Let me guess. You watched a demo on Twitter, fired up Claude Code in your terminal, gave it a massive, vague prompt to "build a full-stack SaaS app with Next.js and Postgres," and sat back feeling like a tech god.
+
+Then you watched it confidently write thousands of lines of code... that completely broke the second you tried to run `npm run dev`.
+
+Yeah. We've all been there.
+
+The hype around agentic AI—especially terminal-native ones like Anthropic's Claude Code—is absolutely deafening right now. Influencers are shouting from the rooftops that the end of the software engineering profession is nigh. But if you actually use this tool day-to-day in a production codebase, reality hits hard and fast: AI isn't a senior architect. It is an incredibly fast, highly capable, but dangerously overconfident junior developer that desperately needs adult supervision.
+
+When you use Claude Code for the right tasks, it feels like pure magic. It genuinely deletes entire categories of boring work. But when you use it wrong, you end up spending more time untangling its hallucinated spaghetti code than you would have spent just writing the feature yourself from scratch.
+
+After heavily utilizing Anthropic's CLI tool for months, cross-referencing my own headaches with real-world developer workflows, and abandoning a few doomed AI-generated side projects, I've mapped out exactly where this tool actually fits into a professional workflow.
+
+Here is the honest truth about what Claude Code is actually good at—and what you need to stop using it for immediately.
+
+<Callout type="info">
+  **Note for the uninitiated:** Claude Code isn't a web interface. It's an agentic CLI tool that
+  lives directly in your terminal. It reads your file system, executes bash commands, runs your
+  linters, and iterates on errors autonomously. That power is exactly why you need to be careful
+  with it.
+</Callout>
+
+---
+
+## The Sweet Spot: Where Claude Code is Actually Amazing
+
+If you want to get 10x value out of Claude Code, point it at tasks that are highly constrained, tedious, or require massive pattern recognition.
+
+### 1. Writing Tests (Finally, Relief from the Yak Shaving)
+
+If there is one universal truth in software engineering, it's that writing tests is an absolute chore. We all know we _should_ do it, but mocking out third-party APIs, setting up database test states, and covering obscure edge cases is mentally draining.
+
+This is arguably Claude Code's biggest superpower. Because it lives directly in your terminal and can parse your entire project directory, you don't have to awkwardly copy-paste context into a browser window.
+
+You can just point it to your test directory and say:
+
+> _"Look at `user_auth.py`. Write a comprehensive Pytest suite for it. Mock the Stripe API calls exactly how we mocked them in `billing_test.py`."_
+
+**The Workflow Hack:** Run a `git diff` and have Claude generate tests exclusively for the exact lines you just altered.
+
+```bash
+# A highly effective Claude Code prompt
+claude "Review my unstaged git changes. Write unit tests to cover the new branches of logic I just added to the cart controller. Make sure they pass."
+```
+
+It cuts the time spent on testing by literally 80%, freeing you up to focus on actual application architecture.
+
+### 2. Rapid Debugging and Stack Trace Deciphering
+
+When your console spits out a 50-line wall of red text stemming from some deeply nested Webpack or dependency issue, scanning it for the actual point of failure takes time.
+
+Claude reads stack traces orders of magnitude faster than a human. It pulls patterns from its massive training data to identify obscure bugs that might normally take you hours of digging through abandoned GitHub issues to solve.
+
+It isn't perfect—sometimes it gets stuck in an execution loop trying to fix the same error over and over. You'll watch it try `npm install`, fail, try a different flag, fail, and try again. But even when it fails to fix the issue autonomously, it usually acts as an incredible rubber duck. It gets you 90% of the way there, isolates the failing file and line number, and explains the root cause so you can take over.
+
+### 3. The `CLAUDE.md` Magic (Enforcing Team Alignment)
+
+Because Claude Code runs locally, it automatically looks for a `CLAUDE.md` file in your project root. This file is a game-changer. It acts as your project's constitution for the AI.
+
+Without it, Claude will just guess your preferences. With it, you constrain its behavior to match your team's exact standards.
+
+<CodeBlock language="markdown" title="Example CLAUDE.md">
+  # Project AI Guidelines - **Package Manager:** We strictly use `pnpm`. Never use `npm` or `yarn`.
+  - **Styling:** Tailwind CSS only. Do not write custom CSS or use inline styles. - **Database:**
+  Never write bare SQL queries. Always use the Prisma ORM. - **Tone:** Do not apologize or give
+  lengthy explanations. Just output the code or the terminal command.
+</CodeBlock>
+
+By hardcoding your stack rules, you prevent the AI from drifting off into its own weird architectural decisions. It stops hallucinating outdated React patterns and starts actually coding like a member of your team.
+
+### 4. Codebase Onboarding and Legacy Deciphering
+
+Ever been dropped into a massive, undocumented legacy codebase written by a developer who quit three years ago? It's terrifying.
+
+Claude Code is the ultimate digital archaeologist. You can drop it into a folder with 30 cryptic files and ask it to explain how the data flows.
+
+- _"Where does the user session actually get validated in this middleware mess?"_
+- _"Map out the dependencies for this specific cron job."_
+- _"Write a `README.md` that explains how to spin up this local environment, based on the Dockerfile and package.json."_
+
+It will scan hundreds of files in seconds and give you a coherent map of how things connect.
+
+### 5. Bash Scripting and Terminal Chores
+
+We all pretend we know how to write complex bash scripts, but in reality, most of us are just Googling "how to extract substring in bash" every single time.
+
+Claude Code is phenomenal at terminal chores. Need to write a script that finds all `.jpg` files recursively, converts them to `.webp`, and logs the size savings to a CSV? Just ask Claude to do it. Need to do a complex interactive rebase? Ask Claude for the exact git commands. It's a massive friction reducer.
+
+---
+
+## The Danger Zone: What You Need to Stop Doing
+
+This is where the hype train derails. If you lean on Claude for the following tasks, you are injecting technical debt into your project at an unprecedented speed.
+
+### 1. Expecting It to Design Complex Architecture
+
+Claude has a dangerous "works is enough" mentality. It doesn't care about the N+1 query problem it just introduced. It rarely considers long-term performance implications, memory leaks, or how the code will scale when your database hits 10 million rows.
+
+If you ask it to build a complex, multi-currency aggregation system from scratch, it will give you a naive, synchronous implementation that will absolutely crash under heavy load. It optimizes for _passing the immediate test_, not for surviving production.
+
+**The Rule of Thumb:** You must remain the architect. You design the data models. You define the system boundaries and API contracts. Let Claude write the boilerplate to connect the pieces you designed.
+
+### 2. Large-Scale Refactoring (The Illusion of Context)
+
+Claude Code has a massive context window (200k+ tokens). That sounds great on paper, but just because it _can_ load your whole repository into memory doesn't mean it _understands_ the nuanced business logic behind why a certain variable is handled a specific way.
+
+LLMs suffer from the "lost in the middle" phenomenon. If you tell it to "refactor the entire billing module to use the new webhook system," you are playing with fire. It will inevitably drop subtle error-handling logic, hallucinate variables, or silently delete an important edge case that wasn't explicitly covered by a test.
+
+**The Fix:** Break tasks down into bite-sized, heavily constrained chunks. Don't ask it to refactor a module; ask it to extract one specific function, and verify it before moving to the next.
+
+### 3. Blindly Trusting Its Dependency Management
+
+Claude Code loves to hallucinate npm packages or Python libraries that sound incredibly plausible but don't actually exist. Or worse, it will pull in a massive, bloated, and potentially insecure third-party library to solve a problem that could have been fixed with three lines of native code.
+
+<Callout type="warning">
+  **Security Risk:** Because Claude Code can execute commands, it can theoretically run `npm install
+  malicious-package`. Always review what it is trying to install, and never run Claude Code with
+  elevated (`sudo`) privileges.
+</Callout>
+
+### 4. Letting It Write Final Human-Facing Documentation
+
+While Claude is great at _reading_ code and telling you what it does technically, it is a terrible writer for human consumption. LLMs love to use 50 words when 10 would do.
+
+If you use it to write your user-facing docs or API guides, they will be noisy, repetitive, and sound exactly like a robot wrote them. It will include unnecessary details about implementation rather than focusing on developer experience (DX). Use Claude to create the rough first draft and extract the technical parameters, but rewrite the actual prose yourself so it's succinct and readable.
+
+---
+
+## The Verdict: Reframe Your Relationship with AI
+
+Stop treating Claude Code like a replacement for your brain. It is not an autonomous engineer; it is an incredibly fancy, context-aware exoskeleton for your keyboard.
+
+The developers getting the most out of this tool aren't the ones trying to automate their entire job away so they can play video games. The 10x developers are using it as a surgical instrument. They are automating the soul-crushing boilerplate, the endless mock generation, the linting fixes, and the stack trace analysis.
+
+By offloading the friction, they are preserving their mental energy for what actually matters: hard logic, system design, security, and user experience.
+
+If you want to survive the AI coding era:
+
+1. **Write the `CLAUDE.md` file immediately.**
+2. **Keep your prompts narrow and hyper-specific.**
+3. **Never let the AI make an architectural decision.**
+4. **For the love of god, read the code before you commit it.**
+
+Code generation is essentially free now. Code _maintainability_ is about to become the most valuable skill in the industry. Act accordingly.
